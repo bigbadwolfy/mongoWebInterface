@@ -1,6 +1,6 @@
 {
-  "name": "untitled5",
-  "version": "0.0.0",
+  "name": "mongowebview",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -16,5 +16,21 @@
     "mongodb": "^3.0.2",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "description": "simple application to read/write from/to mongo",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigbadwolfy/mongoWebInterface.git"
+  },
+  "keywords": [
+    "mongo"
+  ],
+  "author": "igor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigbadwolfy/mongoWebInterface/issues"
+  },
+  "homepage": "https://github.com/bigbadwolfy/mongoWebInterface#readme"
 }
