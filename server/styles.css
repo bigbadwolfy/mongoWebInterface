@@ -1,0 +1,175 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #f7f8f9;
+    margin: 0;
+}
+
+
+input[type="text"],input[type="text"]:active,input[type="text"]:focus {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 16px;
+    outline: 0 !important;
+
+}
+
+
+input[type='file'],input[type="file"]:active,input[type="file"]:focus {
+    min-width: 270px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 16px;
+    outline: 0 !important;
+    
+    
+
+}
+
+
+textarea, textarea:active, textarea:focus {
+    font-size: 16px;
+    border-radius: 3px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    box-shadow: inset 0 1px 0 1px rgba(0,0,0,.1), inset 0 10px 15px rgba(0,0,0,.1);
+    outline: 0 !important;
+    resize: none;
+
+}
+
+
+button,button:active, 
+button:focus {
+    display: inline-block;
+    min-width: 270px;
+    margin: 15px 5px;
+    padding: 10px 15px 12px;
+    font: 700 12px/1 'Open Sans',sans-serif;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 -10px 20px rgba(0,0,0,.1);
+    cursor: pointer;
+    color: #777;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    background: #fff;
+    outline: 0 !important;
+}
+
+
+.text {
+    align-content: left;
+    align-self: left;
+}
+
+.flex-container {
+    height: 100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.flex-text1 {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    align-content: start;
+
+}
+
+.flex-text2 {
+    width: 50%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font:  16px 'Roboto';
+}
+
+.flex-text3 {
+    width: 50%;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font: 16px 'Roboto';
+}
+
+.flex-item-1 {
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    align-content: center;
+    font: 18px 'Intro';
+    align-self: center;
+    margin: auto;
+
+    background: linear-gradient(to bottom, #aaaaaa, #220035);
+    color: #ffffff;
+
+}
+
+.flex-item-2 {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    align-content: start;
+    color: #443a3ac4;
+}
+
+.flex-item-3 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-self: flex-end;
+}
+
+.flex-item-4 {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+}
+
+.flex-item-5 {
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    color: #0b1f3599;
+    font-family: "BlinkMacSystemFont",-apple-system, "Roboto", sans-serif, "Oxygen", "Segoe UI" ;
+    font-size: 13px;
+    background: #f7f8f9;
+}
+
+.flex-item-6 {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-content: start;
+}
+
+.flex-item-7 {
+    width: 100%;
+    height: 20%;
+    text-align: center;
+}
+
+
+.flex-item-8 {
+    width: 100%;
+    height: 20px;
+    background-color: #ccccccb3;
+    text-align: right;
+    font: 12px 'Komika Axis';
+}
