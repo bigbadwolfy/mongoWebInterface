@@ -4,6 +4,7 @@ var outtext = 'out';
 var selectJSON = 'selectFiles';
 //###############################CONSTANTS#############################//
 
+
 function setText(textareaid, text) {
 
     document.getElementById(textareaid).innerHTML = text;
