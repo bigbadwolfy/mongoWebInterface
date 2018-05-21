@@ -8,11 +8,16 @@ Also you need to comment string with bind_ip in mongod.conf file. If you do not 
 $ touch mongod.conf
 $ chmod 777 mongod.conf
 ~~~~
+~~~~
 $ vim /etc/mongod.conf
 #bind_ip = 127.0.0.1
-
+~~~~
 Warning: do not use this setup to your database in prod. You should add auth to your DB.
 Then run you DB
+~~~~
 $ mongod --config /etc/mongod.conf
-Then use command
+~~~~
+To start your container first time use command:
+~~~~
 $ docker run -p 8080:8080 %container-name%
+~~~~
