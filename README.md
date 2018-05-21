@@ -1,5 +1,6 @@
 # mongoWebInterface
-To start app you need to start your mongoDB first. You should run mongod in terminal, then run file app.js
+To start app you need to start your mongoDB first. You should run mongod in terminal, then run file app.js make shure you change uri string to "mongodb://localhost:27017/exampleDb"
+
 Application, also, may be run in container. use command ./build in root workdir. This script ask you to add wersion of your container
 It will work correctly if you change your uri link in app.js, mongodb://%your PC IP%:27017/ufr_cardfix
 
