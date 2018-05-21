@@ -1,15 +1,18 @@
 # mongoWebInterface
-# to start app you need to start your mongoDB first. You should run mongod in terminal, then run file app.js
-# Application, also, may be run in container. use command docker build . in root workdir.
-# It will be work correctly if you change your uri link in app.js, mongodb://%your PC IP%:27017/ufr_cardfix
-# Also you need to add your PC IP in whitelist in your mongo config.
---------------------------------------
+To start app you need to start your mongoDB first. You should run mongod in terminal, then run file app.js
+Application, also, may be run in container. use command ./build in root workdir. This script ask you to add wersion of your container
+It will work correctly if you change your uri link in app.js, mongodb://%your PC IP%:27017/ufr_cardfix
+
+Also you need to comment string with bind_ip in mongod.conf file. If you do not have this file, you may create it manually
+~~~~
+$ touch mongod.conf
+$ chmod 777 mongod.conf
+~~~~
 $ vim /etc/mongod.conf
+#bind_ip = 127.0.0.1
 
-# /etc/mongod.conf
-
-# Listen to local and LAN interfaces.
-#add your PC IP in string below
-bind_ip = 127.0.0.1,%your PC IP%
---------------------------------------
-# Then use command docker run -p 8080:8080 %container-name%
+Warning: do not use this setup to your database in prod. You should add auth to your DB.
+Then run you DB
+$ mongod --config /etc/mongod.conf
+Then use command
+$ docker run -p 8080:8080 %container-name%
