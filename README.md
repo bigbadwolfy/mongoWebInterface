@@ -21,3 +21,4 @@ To start your container first time use command:
 ~~~~
 $ docker run -p 8080:8080 %container-name%
 ~~~~
+also see https://docs.mongodb.com/manual/reference/configuration-options/
