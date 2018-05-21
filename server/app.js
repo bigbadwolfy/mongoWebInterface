@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 //uri подключения к удаленной монге
 //на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
-MongoClient.connect('mongodb://ufr_cardfix_user:123456@ufrmsvpndev1:27045/ufr_cardfix', function (err, client) {
+MongoClient.connect('mongodb://172.28.66.125:27017/ufr_cardfix', function (err, client) {
     if (err)
         throw err;
     else
