@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 ObjectID = require('mongodb').ObjectID;
 
+//
 var db;
 var connection;
 
@@ -15,16 +16,19 @@ app.use(bodyParser.json());
 
 //uri подключения к удаленной монге
 //на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
-MongoClient.connect('mongodb://172.28.66.125:27017/ufr_cardfix', function (err, client) {
-    if (err)
-        throw err;
+//TODO вынести подключение к БД в отдельную функцию, вызывать с параметром uri, т.е. добавить выбор
+MongoClient.connect('mongodb://172.28.66.53:27017/ufr_cardfix', function (err, client) {
+    if (err) {
+        console.log(err)
+    }
+
     else
     {
         db = client.db('cash');
         connection = client;
         console.log('Connected to MongoDB');
         //Start app only after connection is ready
-        app.listen(8080);
+
     }
 });
 
@@ -43,7 +47,7 @@ app.get('/healthmonitor', function(req, res) {
 app.post('/senddata', function(req, res) {
     // Insert JSON straight into MongoDB
     console.log('here');
-    console.log(req.body);
+    console.log('\x1b[47m%s\x1b[0m',req.body);
     db.collection('cash').insert(req.body,function(err, result) {
         if (err) throw err;
         else
@@ -58,9 +62,21 @@ app.post('/getdata', function(req,res) {
     db.collection('cash').find(req.body).toArray(function(err, result) {
         if (err) throw err;
         else
-            console.log('\x1b[36m%s\x1b[0m','receive data');
-            console.log(result);
+            console.log('receive data');
+            console.log('\x1b[45m%s\x1b[0m',JSON.stringify(result));
             res.send(result);
+    });
+});
+
+
+app.post('/getlastdata', function(req,res) {
+
+    db.collection('cash').find(req.body).sort({ $natural: -1 }).limit(1).toArray(function(err, result) {
+        if (err) throw err;
+        else
+            console.log('\x1b[33m%s\x1b[0m','receive last data');
+        console.log('\x1b[45m%s\x1b[0m',JSON.stringify(result));
+        res.send(result);
     });
 });
 
@@ -92,13 +108,6 @@ app.delete('/deletedata/:id', function(req,res) {
 });
 
 
-app.post('/getlastdata', function(req,res) {
 
-    db.collection('cash').find(req.body).sort({ $natural: -1 }).limit(1).toArray(function(err, result) {
-        if (err) throw err;
-        else 
-            console.log('\x1b[31m%s\x1b[0m','receive last data');
-            console.log(result);
-        res.send(result);
-    });
-});
+
+app.listen(8080, console.log('\x1b[46m%s\x1b[0m','listening on port 8080!'));
