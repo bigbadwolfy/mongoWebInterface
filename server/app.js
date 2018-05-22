@@ -9,8 +9,7 @@ ObjectID = require('mongodb').ObjectID;
 var db;
 var connection;
 
-
-app.use(express.static(__dirname));
+app.use(express.static('src'));
 app.use(bodyParser.json());
 
 
@@ -35,7 +34,7 @@ MongoClient.connect('mongodb://172.28.66.53:27017/ufr_cardfix', function (err, c
 
 app.get('/', function(req, res) {
     console.log('get /');
-    res.sendFile(path.join(__dirname, '/json.html'));
+    res.sendFile(path.join(__dirname, '../src/json.html'));
 });
 
 
