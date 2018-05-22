@@ -16,21 +16,42 @@ app.use(bodyParser.json());
 //uri подключения к удаленной монге
 //на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
 //TODO вынести подключение к БД в отдельную функцию, вызывать с параметром uri, т.е. добавить выбор
-MongoClient.connect('mongodb://172.28.66.53:27017/ufr_cardfix', function (err, client) {
-    if (err) {
-        console.log(err)
-    }
+// MongoClient.connect('mongodb://172.28.66.53:27017/ufr_cardfix', function (err, client) {
+//     if (err) {
+//         console.log(err)
+//     }
+//
+//     else
+//     {
+//         db = client.db('cash');
+//         connection = client;
+//         console.log('Connected to MongoDB');
+//         //Start app only after connection is ready
+//
+//     }
+// });
 
-    else
-    {
-        db = client.db('cash');
-        connection = client;
-        console.log('Connected to MongoDB');
-        //Start app only after connection is ready
 
-    }
-});
+function mongoConnect(uri) {
+    MongoClient.connect(uri, function (err, client) {
+        if (err) {
+            console.log(err);
+            return (err)
+        }
+        else
+        {
+            db = client.db('cash');
+            connection = client;
+            console.log('Connected to MongoDB');
+            return ('Connected to MongoDB');
+            //Start app only after connection is ready
+        }
+    });
+}
 
+function mongoClose() {
+    db.close();
+}
 
 app.get('/', function(req, res) {
     console.log('get /');
@@ -107,6 +128,15 @@ app.delete('/deletedata/:id', function(req,res) {
 });
 
 
+app.post('/setmongoconnect', function(req,res) {
+    console.log('\x1b[31m%s\x1b[0m',req.body);
+    if (connection != undefined ) {connection.close();}
+    var result = mongoConnect(req.body.string);
+    console.log(result);
+    res.send(result);
+});
 
+
+//mongoConnect('mongodb://172.28.66.53:27017/ufr_cardfix');
 
 app.listen(8080, console.log('\x1b[46m%s\x1b[0m','listening on port 8080!'));

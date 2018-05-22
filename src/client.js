@@ -127,7 +127,7 @@ function findlastJSON() {
 
 function deleteJSON() {
 
-    var id = document.getElementById('deleteid').value
+    var id = document.getElementById('deleteid').value;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -139,4 +139,22 @@ function deleteJSON() {
 
     xmlhttp.open('DELETE', document.URL+'deletedata/'+id,true);
     xmlhttp.send();
+}
+
+
+function mongoConnect() {
+    //alert(document.getElementById('mongo').value);
+    var connectionString = document.getElementById('mongo').value;
+    alert(connectionString);
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            alert(this.responseText)
+        }
+    };
+    xmlhttp.open('POST', document.URL+'setmongoconnect/');
+    xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xmlhttp.send(('{'+'"string"'+':'+'"'+connectionString+'"'+'}'));
+
 }
