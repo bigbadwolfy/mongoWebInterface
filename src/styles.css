@@ -159,10 +159,21 @@ button:focus {
     align-content: start;
 }
 
+.flex-item-71 {
+    width: 40%;
+    height: 50px;
+}
+
 .flex-item-7 {
-    width: 100%;
+    width: 250px;
     height: 20%;
     text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #848484;
+    border-radius: 5px;
 }
 
 

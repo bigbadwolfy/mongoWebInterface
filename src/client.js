@@ -143,14 +143,14 @@ function deleteJSON() {
 
 
 function mongoConnect() {
-    //alert(document.getElementById('mongo').value);
     var connectionString = document.getElementById('mongo').value;
     alert(connectionString);
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            alert(this.responseText)
+            alert(this.responseText);
+            document.getElementById('response').innerText = this.responseText;
         }
     };
     xmlhttp.open('POST', document.URL+'setmongoconnect/');

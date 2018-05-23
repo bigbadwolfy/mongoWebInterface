@@ -5,9 +5,9 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 ObjectID = require('mongodb').ObjectID;
 
-//
 var db;
 var connection;
+
 
 app.use(express.static('src'));
 app.use(bodyParser.json());
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 //uri подключения к удаленной монге
 //на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
-// MongoClient.connect('mongodb://172.28.66.53:27017/ufr_cardfix', function (err, client) {
+// MongoClient.connect('mongodb://172.28.65.218:27017/ufr_cardfix', function (err, client) {
 //     if (err) {
 //         console.log(err)
 //     }
@@ -31,26 +31,40 @@ app.use(bodyParser.json());
 // });
 
 
+function connectToMng(uri) {
+    return new Promise(resolve => {
+        MongoClient.connect(uri, function (err, client) {
+            if (err) {
+                console.log(err);
+                resolve('bad uri')
+            }
+            else
+            {
+                db = client.db('cash');
+                connection = client;
+                console.log('Connected to MongoDB');
+                resolve('connected successfully');
+            }
+        });
+    })
+}
+
 function mongoConnect(uri) {
     MongoClient.connect(uri, function (err, client) {
         if (err) {
             console.log(err);
-            return (err)
+            return ('0')
         }
         else
         {
             db = client.db('cash');
             connection = client;
             console.log('Connected to MongoDB');
-            return ('Connected to MongoDB');
-            //Start app only after connection is ready
+            return ('1');
         }
     });
 }
 
-function mongoClose() {
-    db.close();
-}
 
 app.get('/', function(req, res) {
     console.log('get /');
@@ -143,16 +157,17 @@ app.delete('/deletedata/:id', function(req,res) {
 });
 
 
-app.post('/setmongoconnect', function(req,res) {
-    console.log('\x1b[31m%s\x1b[0m',req.body);
+app.post('/setmongoconnect', async function(req,res) {
+    console.log('\x1b[31m%s\x1b[0m',JSON.stringify(req.body));
     if (connection != undefined) {
         connection.close();
     }
-    var result = mongoConnect(req.body.string);
-    console.log(result);
+    console.log(a);
+    //prom(req.body.string).then(function(response) { res.send(response) })
+    //var result = mongoConnect(req.body.string);
+    var result = await connectToMng(req.body.string);
     res.send(result);
 });
-
 
 //mongoConnect('mongodb://172.28.66.53:27017/ufr_cardfix');
 
