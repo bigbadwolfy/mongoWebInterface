@@ -146,11 +146,11 @@ function mongoConnect() {
     var connectionString = document.getElementById('mongo').value;
     alert(connectionString);
     var xmlhttp = new XMLHttpRequest();
-
+    document.getElementById('response').innerHTML = '<img src="./loading.gif" width="50" height="50"/>';
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             alert(this.responseText);
-            document.getElementById('response').innerText = this.responseText;
+            document.getElementById('response').innerHTML = '<p>'+this.responseText+'</p>';
         }
     };
     xmlhttp.open('POST', document.URL+'setmongoconnect/');

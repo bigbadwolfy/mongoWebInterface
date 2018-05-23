@@ -164,6 +164,15 @@ button:focus {
     height: 50px;
 }
 
+/*@keyframes spin {*/
+    /*from {transform:rotate(0deg);}*/
+    /*to {transform:rotate(360deg);}*/
+/*}*/
+
+/*img{*/
+    /*animation: spin 5s linear 0s infinite;*/
+/*}*/
+
 .flex-item-7 {
     width: 250px;
     height: 20%;
@@ -182,5 +191,9 @@ button:focus {
     height: 20px;
     background-color: #ccccccb3;
     text-align: right;
+    font: 12px 'Komika Axis';
+}
+
+p {
     font: 12px 'Komika Axis';
 }
