@@ -57,7 +57,7 @@ app.post('/senddata', function(req, res) {
     console.log('\x1b[47m%s\x1b[0m',req.body);
     db.collection('cash').insert(req.body,function(err, result) {
         if (err) {
-            console.log(err)
+            console.log(err);
             res.send('error, problems with connection to your mongoDB')
         }
         else {
