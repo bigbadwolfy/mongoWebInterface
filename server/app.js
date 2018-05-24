@@ -54,7 +54,6 @@ app.get('/healthmonitor', function(req, res) {
 
 app.post('/senddata', function(req, res) {
     // Insert JSON straight into MongoDB
-    console.log('here');
     console.log('\x1b[47m%s\x1b[0m',req.body);
     db.collection('cash').insert(req.body,function(err, result) {
         if (err) {
@@ -72,7 +71,7 @@ app.post('/getdata', function(req,res) {
 
     db.collection('cash').find(req.body).toArray(function(err, result) {
         if (err) {
-            console.log(err)
+            console.log(err);
             res.send(err)
         }
         else {
@@ -145,6 +144,6 @@ app.post('/setmongoconnect', async function(req,res) {
     res.send(result);
 });
 
-//mongoConnect('mongodb://172.28.66.53:27017/ufr_cardfix'); --use to hardcode connect
+//mongoConnect('mongodb://172.28.66.222:27017/ufr_cardfix'); --use to hardcode connect
 
 app.listen(8080, console.log('\x1b[46m%s\x1b[0m','listening on port 8080!'));
