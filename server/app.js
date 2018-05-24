@@ -13,6 +13,15 @@ app.use(express.static('src'));
 app.use(bodyParser.json());
 
 
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+        resolve();
+    }, 1000);
+});
+}
+
+
 //uri подключения к удаленной монге
 //на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
 // MongoClient.connect('mongodb://172.28.65.218:27017/ufr_cardfix', function (err, client) {
@@ -30,39 +39,22 @@ app.use(bodyParser.json());
 //     }
 // });
 
-
 function connectToMng(uri) {
     return new Promise(resolve => {
         MongoClient.connect(uri, function (err, client) {
             if (err) {
                 console.log(err);
-                resolve('bad uri')
+                resolve(err.message)
             }
             else
             {
                 db = client.db('cash');
                 connection = client;
                 console.log('Connected to MongoDB');
-                resolve('connected successfully');
+                resolve('Connected successfully');
             }
         });
     })
-}
-
-function mongoConnect(uri) {
-    MongoClient.connect(uri, function (err, client) {
-        if (err) {
-            console.log(err);
-            return ('0')
-        }
-        else
-        {
-            db = client.db('cash');
-            connection = client;
-            console.log('Connected to MongoDB');
-            return ('1');
-        }
-    });
 }
 
 
@@ -161,8 +153,9 @@ app.post('/setmongoconnect', async function(req,res) {
     console.log('\x1b[31m%s\x1b[0m',JSON.stringify(req.body));
     if (connection != undefined) {
         connection.close();
+        await resolveAfter2Seconds();
     }
-    console.log(a);
+    console.log(req.body.string);
     //prom(req.body.string).then(function(response) { res.send(response) })
     //var result = mongoConnect(req.body.string);
     var result = await connectToMng(req.body.string);

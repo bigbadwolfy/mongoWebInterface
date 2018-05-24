@@ -145,7 +145,7 @@ function deleteJSON() {
 function mongoConnect() {
     var connectionString = document.getElementById('mongo').value;
     var xmlhttp = new XMLHttpRequest();
-    document.getElementById('response').innerHTML = '<img src="./loading.gif" width="50" height="50"/>';
+    document.getElementById('response').innerHTML = '<p>Connecting...</p>'+'<img src="./loading.gif" width="50" height="50"/>';
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('response').innerHTML = '<p>'+this.responseText+'</p>';
