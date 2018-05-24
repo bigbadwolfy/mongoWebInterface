@@ -78,24 +78,25 @@ function findJSON() {
     var key1 = document.getElementById('key').value;
     var val = document.getElementById('value').value;
     var data = '{"'+key1+'":'+val+'}';
-
-
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById(intext).innerHTML =
-                this.responseText;
-            console.log(this.responseText);
-        }
-    };
-
-    xmlhttp.open('POST', document.URL+'getdata');
-    xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    if (data == '{"":}') {
-        xmlhttp.send();
+    if ((val == '' && key1 != '') || (val != '' && key1 == '')) {
+        alert('Please, enter key and value for search')
     }
-    else xmlhttp.send((data));
+    else {
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(intext).innerHTML =
+                    this.responseText;
+                console.log(this.responseText);
+            }
+        };
 
-
+        xmlhttp.open('POST', document.URL + 'getdata');
+        xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        if (data == '{"":}') {
+            xmlhttp.send();
+        }
+        else xmlhttp.send((data));
+    }
 }
 
 
@@ -104,7 +105,10 @@ function findlastJSON() {
     var xmlhttp = new XMLHttpRequest();
     var key1 = document.getElementById('key').value;
     var val = document.getElementById('value').value;
-
+    if (val == '' || key1 == '') {
+        alert('Please, enter key and value for search')
+    }
+    else {
     var data = '{"'+key1+'":'+val+'}';
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -120,14 +124,16 @@ function findlastJSON() {
         xmlhttp.send();
     }
     else xmlhttp.send((data));
-
-
+    }
 }
 
 
 function deleteJSON() {
-
     var id = document.getElementById('deleteid').value;
+    if (id == '') {
+        alert('Please enter _id');
+    }
+    else {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -139,12 +145,18 @@ function deleteJSON() {
 
     xmlhttp.open('DELETE', document.URL+'deletedata/'+id,true);
     xmlhttp.send();
+    }
 }
 
 
 function mongoConnect() {
     document.getElementById('bconnect').disabled = true;
     var connectionString = document.getElementById('mongo').value;
+    if (connectionString == '') {
+        document.getElementById('response').innerHTML = '<p>Empty uri field</p>';
+        document.getElementById('bconnect').disabled = false;
+    }
+    else {
     var xmlhttp = new XMLHttpRequest();
     document.getElementById('response').innerHTML = '<p>Connecting...</p>'+'<img src="./loading.gif" width="50" height="50"/>';
     xmlhttp.onreadystatechange = function () {
@@ -156,5 +168,5 @@ function mongoConnect() {
     xmlhttp.open('POST', document.URL+'setmongoconnect/');
     xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xmlhttp.send(('{'+'"string"'+':'+'"'+connectionString+'"'+'}'));
-
+    }
 }
