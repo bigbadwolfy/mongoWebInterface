@@ -22,23 +22,6 @@ function resolveAfter2Seconds() {
 }
 
 
-//uri подключения к удаленной монге
-//на localhost выглядеть будет так: mongodb://localhost:27017/exampleDb
-// MongoClient.connect('mongodb://172.28.65.218:27017/ufr_cardfix', function (err, client) {
-//     if (err) {
-//         console.log(err)
-//     }
-//
-//     else
-//     {
-//         db = client.db('cash');
-//         connection = client;
-//         console.log('Connected to MongoDB');
-//         //Start app only after connection is ready
-//
-//     }
-// });
-
 function connectToMng(uri) {
     return new Promise(resolve => {
         MongoClient.connect(uri, function (err, client) {
@@ -162,6 +145,6 @@ app.post('/setmongoconnect', async function(req,res) {
     res.send(result);
 });
 
-//mongoConnect('mongodb://172.28.66.53:27017/ufr_cardfix');
+//mongoConnect('mongodb://172.28.66.53:27017/ufr_cardfix'); --use to hardcode connect
 
 app.listen(8080, console.log('\x1b[46m%s\x1b[0m','listening on port 8080!'));

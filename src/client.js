@@ -12,7 +12,7 @@ function setText(textareaid, text) {
 }
 
 
-function sendJSON(){
+function loadJSON(){
 
     var files = document.getElementById(selectJSON).files;
     var value = document.getElementById(selectJSON).value;
