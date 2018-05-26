@@ -2,7 +2,7 @@
 To start app you need to start your mongoDB first. You should run mongod in terminal, then run file app.js
 After app starts, you just need to put uri in field uri mongo and press button "connect to mongo"
 
-Application, also, may be run in container. use command ./build in root workdir. This script ask you to add version of your container, the name of container will be mongowebui, you may change it in script and set it as you want
+Application, also, may be run in container. use command <b>./build</b> in root workdir. This script ask you to add version of your container, the name of container will be mongowebui, you may change it in script and set it as you want
 
 Format of uri string should be this: <b>mongodb://%your PC IP%:27017/ufr_cardfix</b> 
 
