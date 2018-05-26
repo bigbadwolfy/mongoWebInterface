@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e63d1d49-396d-44b6-b042-04328adf479a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
-      <change beforePath="$PROJECT_DIR$/src/client.js" afterPath="$PROJECT_DIR$/src/client.js" />
+      <change beforePath="$PROJECT_DIR$/src/json.html" afterPath="$PROJECT_DIR$/src/json.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,17 +16,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="json.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="json.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/json.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+            <state relative-caret-position="407">
+              <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -137,10 +135,10 @@
         <option value="$PROJECT_DIR$/server/client.js" />
         <option value="$PROJECT_DIR$/buildnpush.sh" />
         <option value="$PROJECT_DIR$/src/css/json.html" />
-        <option value="$PROJECT_DIR$/src/json.html" />
         <option value="$PROJECT_DIR$/server/app.js" />
         <option value="$PROJECT_DIR$/src/styles.css" />
         <option value="$PROJECT_DIR$/src/client.js" />
+        <option value="$PROJECT_DIR$/src/json.html" />
       </list>
     </option>
   </component>
@@ -255,12 +253,12 @@
       <workItem from="1525936169058" duration="14000" />
       <workItem from="1526557772604" duration="2876000" />
       <workItem from="1526909401299" duration="35398000" />
-      <workItem from="1527321162103" duration="360000" />
+      <workItem from="1527321162103" duration="559000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78009000" />
+    <option name="totallyTimeSpent" value="78208000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -630,14 +628,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/arui-feather-stub-master@c7fd7ec6aae/node_modules/babylon/lib/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/json.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="18" lean-forward="false" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -682,6 +672,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="107" column="63" lean-forward="false" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/json.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
           <folding />
         </state>
       </provider>
