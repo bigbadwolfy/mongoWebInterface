@@ -4,7 +4,7 @@ After app starts, you just need to put uri in field uri mongo and press button "
 
 Application, also, may be run in container. use command ./build in root workdir. This script ask you to add version of your container, the name of container will be mongowebui, you may change it in script and set it as you want
 
-Format of uri string should be this: mongodb://%your PC IP%:27017/ufr_cardfix 
+Format of uri string should be this: <b>mongodb://%your PC IP%:27017/ufr_cardfix</br> 
 
 or if you use auth -- mongodb://%username%:%password%@%your PC IP%:27017/ufr_cardfix or another port, if you change it manually
 
