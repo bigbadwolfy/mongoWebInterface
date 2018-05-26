@@ -6,7 +6,7 @@ Application, also, may be run in container. use command ./build in root workdir.
 
 Format of uri string should be this: <b>mongodb://%your PC IP%:27017/ufr_cardfix</b> 
 
-or if you use auth -- <b>mongodb://%username%:%password%@%your PC IP%:27017/ufr_cardfix or another port, if you change it manually</b>
+or if you use auth -- <b>mongodb://%username%:%password%@%your PC IP%:27017/ufr_cardfix</b> or another port, if you change it manually
 
 Also you need to comment string with bind_ip in mongod.conf file if you want to set remote connect to your DB. If you do not have this file, you may create it manually
 ~~~~
