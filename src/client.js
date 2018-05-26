@@ -105,7 +105,7 @@ function findlastJSON() {
     var xmlhttp = new XMLHttpRequest();
     var key1 = document.getElementById('key').value;
     var val = document.getElementById('value').value;
-    if (val == '' || key1 == '') {
+    if ((val == '' && key1 != '') || (val != '' && key1 == '')) {
         alert('Please, enter key and value for search')
     }
     else {
