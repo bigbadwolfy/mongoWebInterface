@@ -7,7 +7,7 @@ ObjectID = require('mongodb').ObjectID;
 
 var db;
 var connection;
-
+var schema;
 
 app.use(express.static('src'));
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ function resolveAfter2Seconds() {
 }
 
 
-function connectToMng(uri) {
+function connectToMng(uri,bd) {
     return new Promise(resolve => {
         MongoClient.connect(uri, function (err, client) {
             if (err) {
@@ -31,7 +31,7 @@ function connectToMng(uri) {
             }
             else
             {
-                db = client.db('cash');
+                db = client.db(bd);
                 connection = client;
                 console.log('Connected to MongoDB');
                 resolve('Connected successfully');
@@ -55,7 +55,7 @@ app.get('/healthmonitor', function(req, res) {
 app.post('/senddata', function(req, res) {
     // Insert JSON straight into MongoDB
     console.log('\x1b[47m%s\x1b[0m',req.body);
-    db.collection('cash').insert(req.body,function(err, result) {
+    db.collection(schema).insert(req.body,function(err, result) {
         if (err) {
             console.log(err);
             res.send('error, problems with connection to your mongoDB')
@@ -68,8 +68,8 @@ app.post('/senddata', function(req, res) {
 
 
 app.post('/getdata', function(req,res) {
-
-    db.collection('cash').find(req.body).toArray(function(err, result) {
+    //console.log(req.body.schema);
+    db.collection(schema).find(req.body).toArray(function(err, result) {
         if (err) {
             console.log(err);
             res.send(err)
@@ -84,7 +84,7 @@ app.post('/getdata', function(req,res) {
 
 app.post('/getlastdata', function(req,res) {
 
-    db.collection('cash').find(req.body).sort({ $natural: -1 }).limit(1).toArray(function(err, result) {
+    db.collection(schema).find(req.body).sort({ $natural: -1 }).limit(1).toArray(function(err, result) {
         if (err) {
             console.log(err);
             res.send(err)
@@ -99,7 +99,7 @@ app.post('/getlastdata', function(req,res) {
 
 app.get('/getschedule', function(req,res) {
     console.log(req.query);
-    db.collection('cash').find(req.query).toArray(function(err, result) {
+    db.collection(schema).find(req.query).toArray(function(err, result) {
         if (err) {
             console.log(err);
             res.send(err)
@@ -119,7 +119,7 @@ app.get('/getschedule', function(req,res) {
 app.delete('/deletedata/:id', function(req,res) {
     console.log('\x1b[31m%s\x1b[0m','here');
     console.log('\x1b[31m%s\x1b[0m',req.param('id'));
-    db.collection('cash').deleteOne({_id: new ObjectID(req.param('id'))},function(err, result) {
+    db.collection(schema).deleteOne({_id: new ObjectID(req.param('id'))},function(err, result) {
         if (err) {
             console.log(err);
             res.send(err)
@@ -138,12 +138,14 @@ app.post('/setmongoconnect', async function(req,res) {
         await resolveAfter2Seconds();
     }
     console.log(req.body.string);
+    console.log(req.body.bd);
+    schema = req.body.schema;
     //prom(req.body.string).then(function(response) { res.send(response) })
     //var result = mongoConnect(req.body.string);
-    var result = await connectToMng(req.body.string);
+    var result = await connectToMng(req.body.string,req.body.bd);
     res.send(result);
 });
 
-//mongoConnect('mongodb://172.28.66.222:27017/ufr_cardfix'); --use to hardcode connect
+//mongoConnect('mongodb://ufr_cardfix_user:123456@172.28.59.46:27045/ufr_cardfix'); --use to hardcode connect
 
 app.listen(8080, console.log('\x1b[46m%s\x1b[0m','listening on port 8080!'));

@@ -18,8 +18,8 @@
     <div class="flex-item-2">
 
         <div class="flex-text1">
-            <div class="flex-text3"><b>Отправленные данные</b></div>
-            <div class="flex-text2"><b>Полученные данные</b></div>
+            <div class="flex-text3"><b>Sent data</b></div>
+            <div class="flex-text2"><b>Recieve data</b></div>
         </div>
     </div>
     <div class="flex-item-6">
@@ -34,19 +34,21 @@
     <div class="flex-item-3">
 
         <input type="file" id="selectFiles" value="Import" accept="application/json"/>
-        <button onClick='loadJSON()'>Записать JSON</button>
+        <button onClick='loadJSON()'>Write JSON</button>
         <br>
         <br>
-        <input type="text" id="key" placeholder="ключ поиска" />
-        <input type="text" id="value" placeholder="значение поиска" />
-        <input type="text" id="deleteid" placeholder="id удаления"/>
+        <input type="text" id="key" placeholder="key to search" />
+        <input type="text" id="value" placeholder="value to search" />
+        <input type="text" id="deleteid" placeholder="id to remove"/>
         <input type="text" id="mongo" placeholder="uri mongo"/>
+        <input type="text" id="bd" placeholder="bd"/>
+        <input type="text" id="schema" placeholder="schema"/>
         <br>
         <br>
-        <button onclick="findlastJSON()">Показать последние данные</button>
-        <button onclick="findJSON()">Показать данные</button>
-        <button onclick="deleteJSON()">удалить запись</button>
-        <button id="bconnect" onclick="mongoConnect()">подключиться к Mongo</button>
+        <button onclick="findlastJSON()">Show last data</button>
+        <button onclick="findJSON()">Show data</button>
+        <button onclick="deleteJSON()">Remove data</button>
+        <button id="bconnect" onclick="mongoConnect()">Connect to Mongo</button>
 
     </div>
     <div class="flex-item-8"><b>MongoWebUI</b></div>
