@@ -154,7 +154,7 @@ function mongoConnect() {
     var connectionString = document.getElementById('mongo').value;
     var bd = document.getElementById('bd').value;
     var schema = document.getElementById('schema').value;
-    if (connectionString == '') {
+    if (connectionString == '' || bd == '' || schema == '') {
         document.getElementById('response').innerHTML = '<p>Empty uri field</p>';
         document.getElementById('bconnect').disabled = false;
     }
@@ -169,6 +169,7 @@ function mongoConnect() {
     };
     xmlhttp.open('POST', document.URL+'setmongoconnect/');
     xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xmlhttp.send(('{'+'"string"'+':'+'"'+connectionString+'"'+','+'"bd"'+':'+'"'+bd+'"'+','+'"schema"'+':'+'"'+schema+'"'+'}'));
+    xmlhttp.send(('{'+'"string"'+':'+'"'+connectionString+'"'+','
+        +'"bd"'+':'+'"'+bd+'"'+','+'"schema"'+':'+'"'+schema+'"'+'}'));
     }
 }
