@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
-ObjectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb').ObjectID;
 
 var db;
 var connection;
@@ -140,8 +140,6 @@ app.post('/setmongoconnect', async function(req,res) {
     console.log(req.body.string);
     console.log(req.body.bd);
     schema = req.body.schema;
-    //prom(req.body.string).then(function(response) { res.send(response) })
-    //var result = mongoConnect(req.body.string);
     var result = await connectToMng(req.body.string,req.body.bd);
     res.send(result);
 });

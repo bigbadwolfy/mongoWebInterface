@@ -1,9 +1,8 @@
 //###############################CONSTANTS#############################//
-var intext = 'in';
-var outtext = 'out';
-var selectJSON = 'selectFiles';
+let intext = 'in';
+let outtext = 'out';
+let selectJSON = 'selectFiles';
 //###############################CONSTANTS#############################//
-
 
 function setText(textareaid, text) {
     document.getElementById(textareaid).innerHTML = text;
@@ -11,18 +10,18 @@ function setText(textareaid, text) {
 
 
 function loadJSON(){
-    var files = document.getElementById(selectJSON).files;
-    var value = document.getElementById(selectJSON).value;
-    var filereader = new FileReader();
+    let files = document.getElementById(selectJSON).files;
+    let value = document.getElementById(selectJSON).value;
+    let filereader = new FileReader();
 //проверка на попытку загрузки пустого файла
-    if (value == "") {
+    if (value == '') {
         
         console.log(document.getElementById(outtext).value);
         if (document.getElementById(outtext).value == "") { //проверка формы, если форма содержит текст - попытка загрузить текст
             alert('empty');
         }
         else {
-            var xmlhttp = new XMLHttpRequest();
+            let xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
@@ -38,15 +37,14 @@ function loadJSON(){
     else {
 
         filereader.onload = function(e) {
-            var result = JSON.parse(e.target.result);
-            var formatted = JSON.stringify(result, null, 2);
+            let result = JSON.parse(e.target.result);
+            let formatted = JSON.stringify(result, null, 2);
             document.getElementById(outtext).value = formatted;
-            var xmlhttp = new XMLHttpRequest();// new HttpRequest instance
+            let xmlhttp = new XMLHttpRequest();// new HttpRequest instance
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 
                     setText(outtext,this.responseText);
-                    console.log(this.responseText);
                     alert('данные записаны:'+this.responseText);
                 }
             };
@@ -61,10 +59,10 @@ function loadJSON(){
 
 function findJSON() {
 
-    var xmlhttp = new XMLHttpRequest();
-    var key1 = document.getElementById('key').value;
-    var val = document.getElementById('value').value;
-    var data = '{'+'"'+key1+'"'+':'+val+'}';
+    let xmlhttp = new XMLHttpRequest();
+    let key1 = document.getElementById('key').value;
+    let val = document.getElementById('value').value;
+    let data = '{'+'"'+key1+'"'+':'+val+'}';
     if ((val == '' && key1 != '') || (val != '' && key1 == '')) {
         alert('Please, enter key and value for search')
     }
@@ -73,7 +71,6 @@ function findJSON() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById(intext).innerHTML =
                     this.responseText;
-                console.log(this.responseText);
             }
         };
         xmlhttp.open('POST', document.URL + 'getdata');
@@ -88,21 +85,19 @@ function findJSON() {
 
 function findlastJSON() {
 
-    var xmlhttp = new XMLHttpRequest();
-    var key1 = document.getElementById('key').value;
-    var val = document.getElementById('value').value;
+    let xmlhttp = new XMLHttpRequest();
+    let key1 = document.getElementById('key').value;
+    let val = document.getElementById('value').value;
     if ((val == '' && key1 != '') || (val != '' && key1 == '')) {
         alert('Please, enter key and value for search')
     }
     else {
-    var data = '{'+'"'+key1+'"'+':'+val+'}';
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById(intext).innerHTML =
-                this.responseText;
-            console.log(this.responseText);
-        }
-    };
+        let data = '{'+'"'+key1+'"'+':'+val+'}';
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(intext).innerHTML = this.responseText;
+            }
+        };
     xmlhttp.open('POST', document.URL+'getlastdata');
     xmlhttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     if (data == '{"":}') {
@@ -114,39 +109,41 @@ function findlastJSON() {
 
 
 function deleteJSON() {
-    var id = document.getElementById('deleteid').value;
+    let id = document.getElementById('deleteid').value;
     if (id == '') {
         alert('Please enter _id');
     }
     else {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById(intext).innerHTML =
-                this.responseText;
-            console.log(this.responseText);
-        }
-    };
-
-    xmlhttp.open('DELETE', document.URL+'deletedata/'+id,true);
-    xmlhttp.send();
+        let result = confirm('are you shure?');
+        if (result) {
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(intext).innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
+        };
+        xmlhttp.open('DELETE', document.URL + 'deletedata/' + id, true);
+        xmlhttp.send();
+    }
+    else {alert('selected object deleted')}
     }
 }
 
 
 function mongoConnect() {
     document.getElementById('bconnect').disabled = true;
-    var connectionString = document.getElementById('mongo').value;
-    var bd = document.getElementById('bd').value;
-    var schema = document.getElementById('schema').value;
+    let connectionString = document.getElementById('mongo').value;
+    let bd = document.getElementById('bd').value;
+    let schema = document.getElementById('schema').value;
     if (connectionString == '' || bd == '' || schema == '') {
         document.getElementById('response').innerHTML = '<p>Empty uri field</p>';
         document.getElementById('bconnect').disabled = false;
     }
     else {
-    var xmlhttp = new XMLHttpRequest();
-    document.getElementById('response').innerHTML = '<p>Connecting...</p>'+'<img src="./loading.gif" width="50" height="50"/>';
-    xmlhttp.onreadystatechange = function () {
+        let xmlhttp = new XMLHttpRequest();
+        document.getElementById('response').innerHTML = '<p>Connecting...</p>'+'<img src="./loading.gif" width="50" height="50"/>';
+        xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById('response').innerHTML = '<p>'+this.responseText+'</p>';
             document.getElementById('bconnect').disabled = false;
